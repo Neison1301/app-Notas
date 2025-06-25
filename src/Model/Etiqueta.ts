@@ -2,8 +2,8 @@
 
 // Clase que representa una etiqueta o tag asociada a notas o tareas
 export class Etiqueta {
-    id: string;         // Identificador único de la etiqueta
-    nombre: string;     // Nombre legible de la etiqueta (ej: "urgente", "trabajo")
+    id: string;        
+    nombre: string;     // Nombre  de la etiqueta (ej: "urgente", "trabajo")
 
     // Constructor de la clase Etiqueta
     constructor(id: string, nombre: string) {

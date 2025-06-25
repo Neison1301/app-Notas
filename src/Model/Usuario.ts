@@ -6,7 +6,6 @@ export class Usuario {
   nombreUsuario: string; 
   email: string; 
   contraseña?: string; 
-  token?: string; 
 
   // Constructor que valida y asigna los datos del usuario
   constructor(props: {
@@ -14,9 +13,8 @@ export class Usuario {
     nombreUsuario: string;
     email: string;
     contraseña?: string;
-    token?: string;
   }) {
-    const { id, nombreUsuario, email, contraseña, token } = props;
+    const { id, nombreUsuario, email, contraseña } = props;
 
     if (!nombreUsuario.trim()) {
       throw new Error('El nombre de usuario es obligatorio');
@@ -30,7 +28,6 @@ export class Usuario {
     this.nombreUsuario = nombreUsuario;
     this.email = email.toLowerCase();
     this.contraseña = contraseña;
-    this.token = token;
   }
 
   // Devuelve el email en formato estándar
@@ -38,10 +35,6 @@ export class Usuario {
     return `Email: ${this.email}`;
   }
 
-  // Devuelve una parte del token para mostrar de forma segura
-  obtenerTokenParcial(): string {
-    return this.token ? `${this.token.substring(0, 10)}...` : '';
-  }
 
   // Permite cambiar la contraseña del usuario (con validación básica)
   cambiarContraseña(nuevaContraseña: string): void {
@@ -72,7 +65,6 @@ export class Usuario {
       nombreUsuario: this.nombreUsuario,
       email: this.email,
       contraseña: this.contraseña,
-      token: this.token
     });
   }
 }

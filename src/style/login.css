@@ -1,0 +1,280 @@
+/* src/login.css */
+:root {
+    --color-texto-claro: #212121;
+
+
+}
+
+/* Estilos de la tarjeta de autenticación (Login/Registro) */
+.caja-autenticacion {
+  background-color: var(--color-texto-claro);
+  border-radius: 20px; /* Bordes más redondeados */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.377); /* Sombra más pronunciada y suave */
+  width: 90%;
+  max-width: 900px; /* Ancho máximo para el layout de dos columnas */
+  min-height: 500px; /* Altura mínima para que se vea el diseño */
+  display: flex;
+  flex-direction: row; /* Disposición en fila: imagen a la izquierda, formulario a la derecha */
+  overflow: hidden; /* Importante para que los bordes redondeados se apliquen al contenido */
+}
+
+/* Lado de la imagen decorativa (columna izquierda) */
+.lado-imagen {
+  flex: 1; /* Ocupa el espacio restante */
+  background: linear-gradient(135deg, rgba(187, 222, 251, 1), rgba(100, 181, 246, 1)); /* Degradado azul claro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  box-sizing: border-box;
+  position: relative; /* Para elementos decorativos si los hay */
+}
+
+.lado-imagen-contenido {
+  text-align: center;
+  color: var(--color-texto-claro); /* Texto blanco sobre el degradado */
+}
+
+.lado-imagen-contenido img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Elimina espacio extra debajo de la imagen */
+  margin: 0 auto; /* Centra la imagen */
+}
+
+.lado-imagen-contenido h3 {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+/* Lado del formulario de inicio de sesión (columna derecha) */
+.lado-formulario {
+  flex: 1.2; /* Ocupa un poco más de espacio que la imagen */
+  background-color: var(--color-texto-claro);
+  padding: 25px 60px; /* Más padding horizontal */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrar verticalmente el contenido del formulario */
+  align-items: stretch; /* Los elementos hijos se estiran horizontalmente */
+  box-sizing: border-box;
+}
+
+.lado-formulario .titulo-formulario {
+  color: var(--color-principal);
+  margin-bottom: 40px; /* Más espacio debajo del título */
+  font-size: 2.5rem; /* Título más grande */
+  font-weight: 700; /* Más negrita */
+  text-align: center;
+}
+
+/* Ocultar el avatar circular si lo había, ya no es necesario con este diseño */
+.avatar-cont {
+  display: none;
+}
+
+.grupo-form {
+  margin-bottom: 30px; /* Más espacio entre los campos */
+  position: relative;
+}
+
+.grupo-form label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.grupo-form input {
+  width: 100%;
+  padding: 16px 15px; /* Más padding para inputs altos */
+  padding-left: 50px; /* Espacio para el icono a la izquierda */
+  border: 2px solid rgba(0, 91, 148, 0.2); /* Borde más grueso y transparente del azul */
+  border-radius: 10px; /* Bordes redondeados más pronunciados */
+  font-size: 1.1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f7fcff; /* Fondo muy claro para los inputs */
+  color: var(--color-texto-oscuro);
+}
+
+.grupo-form input::placeholder {
+  color: #99aab5; /* Placeholder más claro */
+}
+
+.grupo-form input:focus {
+  border-color: var(--color-principal);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 91, 148, 0.2); /* Sombra de enfoque más visible */
+}
+
+/* Estilo para el icono dentro del input (lado izquierdo) */
+.icono-input-izquierda {
+  position: absolute;
+  left: 20px; /* Posiciona el icono a la izquierda del padding */
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(0, 91, 148, 0.6); /* Icono más sutil */
+  font-size: 1.3rem;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+/* Cambia el color del icono cuando el input está enfocado */
+.grupo-form input:focus + .icono-input-izquierda {
+  color: var(--color-principal);
+}
+
+.mens-error {
+  color: var(--color-error);
+  font-size: 0.85rem;
+  margin-top: 5px;
+  text-align: left;
+}
+
+/* Opciones como "Recuérdame" y "Olvidaste contraseña" */
+.opciones-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px; /* Espacio antes del botón */
+  font-size: 0.95rem;
+  color: #777;
+}
+
+.recuerdame {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.recuerdame input[type="checkbox"] {
+  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-principal);
+}
+
+.enl-olvido {
+  color: var(--color-principal);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.enl-olvido:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* Botón principal */
+.btn-principal {
+  background-color: var(--color-principal);
+  color: var(--color-texto-claro);
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px; /* Bordes más redondeados */
+  cursor: pointer;
+  font-size: 1.2rem; /* Texto más grande */
+  font-weight: 600; /* Más negrita */
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 91, 148, 0.4); /* Sombra azul más intensa */
+  letter-spacing: 0.5px; /* Espaciado entre letras */
+}
+
+.btn-principal:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 91, 148, 0.5);
+}
+
+/* Enlace de navegación (Registrarse/Iniciar Sesión) */
+.enl-nav {
+  margin-top: 30px; /* Espacio sobre el enlace */
+  font-size: 1rem;
+  color: #777;
+  text-align: center;
+}
+
+.enl-nav a {
+  color: var(--color-principal);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.enl-nav a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* Responsividad para la disposición de dos columnas */
+@media (max-width: 768px) {
+  .caja-autenticacion {
+    flex-direction: column; /* Apilar en pantallas pequeñas */
+    max-width: 450px; /* Reducir ancho máximo cuando está apilado */
+    min-height: auto; /* Restablecer altura mínima */
+  }
+
+  .lado-imagen {
+    display: none; /* Ocultar la imagen lateral en móviles */
+  }
+
+  .lado-formulario {
+    flex: 1; /* Ocupa todo el espacio disponible */
+    padding: 30px; /* Reducir padding en móviles */
+  }
+
+  .lado-formulario .titulo-formulario {
+    font-size: 2rem; /* Ajustar tamaño del título */
+    margin-bottom: 30px;
+  }
+
+  .grupo-form input {
+    padding: 12px 15px;
+    padding-left: 45px;
+    font-size: 1rem;
+  }
+
+  .icono-input-izquierda {
+    left: 15px;
+    font-size: 1.2rem;
+  }
+
+  .btn-principal {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lado-formulario {
+    padding: 25px;
+  }
+
+  .lado-formulario .titulo-formulario {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+
+  .grupo-form input {
+    font-size: 0.95rem;
+    padding-left: 40px;
+  }
+
+  .icono-input-izquierda {
+    left: 10px;
+    font-size: 1.1rem;
+  }
+
+  .btn-principal {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}

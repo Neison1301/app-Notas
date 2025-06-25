@@ -2,8 +2,8 @@
 
 import { Nota } from './Nota';
 import { Categoria } from './Categoria';
-import { Etiqueta } from './etiqueta';
-import { Adjunto } from './adjunto';
+import { Etiqueta } from './Etiqueta';
+import { Adjunto } from './Adjunto';
 
 // Clase que representa una tarea basada en una nota, con una fecha límite y estado de completado.
 export class Tarea extends Nota {

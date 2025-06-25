@@ -1,46 +1,55 @@
 /* src/style/dashboard.css */
 
-/* Variables de color basadas en la imagen de referencia */
+/* Variables de colores para fácil manejo */
 :root {
-    --color-sidebar-bg: #212121; /* Fondo oscuro de la barra lateral */
-    --color-sidebar-text: #ffffff; /* Texto blanco en la barra lateral */
-    --color-sidebar-icon: #ffffff; /* Iconos blancos en la barra lateral */
-    --color-sidebar-hover-bg: #333333; /* Fondo al pasar el ratón por los elementos del sidebar */
-    --color-sidebar-active-bg: #3f67f6; /* Azul para el elemento activo/seleccionado en el sidebar */
+    --color-sidebar-bg: #212121;
+    --color-sidebar-text: #ffffff;
+    --color-sidebar-icon: #ffffff;
+    --color-sidebar-hover-bg: #333333;
+    --color-sidebar-active-bg: #3f67f6;
     --color-sidebar-active-text: #ffffff;
 
-    --color-main-bg: #f0f2f7; /* Fondo general del área principal, un gris azulado claro */
-    --color-card-bg: #ffffff; /* Fondo de las tarjetas, blanco */
-    --color-text-dark: #333333; /* Texto oscuro principal */
-    --color-text-light: #6e6e6e; /* Texto secundario o más claro */
-    --color-shadow: rgba(0, 0, 0, 0.08); /* Sombra suave para las tarjetas */
+    --color-main-bg: #f0f2f7;
+    --color-card-bg: #ffffff;
+    --color-text-dark: #333333;
+    --color-text-light: #6e6e6e;
+    --color-shadow: rgba(0, 0, 0, 0.08);
 
-    --color-header-title: #2a3f7a; /* Color para títulos importantes */
-    --color-button-primary-bg: #3f67f6; /* Color de botón primario (azul) */
-    --color-button-primary-text: #ffffff; /* Texto de botón primario (blanco) */
-    --color-button-secondary-bg: #e6e9f1; /* Color de botón secundario (gris claro) */
-    --color-button-secondary-text: #212121; /* Texto de botón secundario (oscuro) */
+    --color-header-title: #2a3f7a;
+    --color-button-primary-bg: #3f67f6;
+    --color-button-primary-text: #ffffff;
+    --color-button-secondary-bg: #e6e9f1;
+    --color-button-secondary-text: #212121;
+}
+
+/* Configuración base de la página */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 body {
-    margin: 0;
     font-family: 'Roboto', sans-serif;
-    background-color: var(--color-main-bg); /* Fondo general de la aplicación */
     color: var(--color-text-dark);
-        height: 100vh;
-
+    background-color: var(--color-main-bg);
+    min-height: 100vh;
 }
 
-/* Diseño general del dashboard */
+/* Contenedor principal del dashboard */
 .diseño-dashboard {
     display: flex;
-    border-radius: 20px; /* Asegura bordes redondeados para todo el diseño */
-    overflow: hidden; /* Oculta cualquier contenido que sobresalga de los bordes redondeados */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Sombra para el dashboard completo */
-    margin: 20px; /* Margen para que se vea el fondo del body */
+    overflow: hidden;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
 }
 
-/* Barra lateral */
+/* Barra de navegación lateral */
 .barra-lateral {
     width: 250px;
     background-color: var(--color-sidebar-bg);
@@ -48,9 +57,9 @@ body {
     padding: 30px 0;
     display: flex;
     flex-direction: column;
-    /* La sombra y el radio ya se manejan en el contenedor principal */
 }
 
+/* Título de la barra lateral */
 .titulo-sidebar {
     text-align: center;
     margin-bottom: 40px;
@@ -60,34 +69,37 @@ body {
     padding: 0 20px;
 }
 
+/* Menú de navegación */
 .menu-navegacion ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
+/* Cada ítem del menú */
 .menu-navegacion li {
     padding: 15px 30px;
-    margin: 5px 20px 5px 0; /* Margen a la derecha para que el radio quede bien */
+    margin: 5px 20px 5px 0;
     display: flex;
     align-items: center;
-    gap: 15px; /* Espacio entre icono y texto */
+    gap: 15px;
     font-size: 1rem;
     font-weight: 400;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease;
-    border-top-right-radius: 10px; /* Bordes redondeados en los ítems del menú (solo a la derecha) */
+    border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     position: relative;
 }
 
+/* Efecto hover en el menú */
 .menu-navegacion li:hover {
     background-color: var(--color-sidebar-hover-bg);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-/* Estilo para el ítem de menú activo (ejemplo: "Expenses" en la imagen) */
+/* Ítem de menú activo/seleccionado */
 .menu-navegacion li.activo {
     background-color: var(--color-sidebar-active-bg);
     color: var(--color-sidebar-active-text);
@@ -97,51 +109,54 @@ body {
     position: relative;
 }
 
-/* Iconos del sidebar */
+/* Iconos del menú */
 .menu-navegacion li i {
     font-size: 1.1rem;
     color: var(--color-sidebar-icon);
 }
 
+/* Icono del ítem activo */
 .menu-navegacion li.activo i {
     color: var(--color-sidebar-active-text);
 }
 
-/* Estilo para el botón de cerrar sesión */
+/* Sección para cerrar sesión */
 .cerrar-sesion {
-    margin-top: auto; /* Empuja el botón a la parte inferior */
-    border-top: 1px solid rgba(255,255,255,0.1); /* Separador sutil */
+    margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,0.1);
     padding-top: 20px;
     margin-top: 30px;
-    margin-right: 20px; /* Ajusta el margen para el botón de cerrar sesión */
-    border-top-right-radius: 10px; /* Aplica bordes redondeados */
+    margin-right: 20px;
+    border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-/* Contenido principal */
+/* Contenido principal del dashboard */
 .contenido-principal {
     flex-grow: 1;
     padding: 40px;
     background-color: var(--color-main-bg);
     display: flex;
     flex-direction: column;
-    gap: 30px; /* Espacio entre secciones del dashboard */
-    border-radius: 0; /* Elimina los radios si vienen de herencia */
+    gap: 30px;
+    border-radius: 0;
 }
 
+/* Título principal del contenido */
 .contenido-principal h2 {
     font-size: 2.2rem;
     color: var(--color-header-title);
     margin-bottom: 20px;
 }
 
+/* Párrafos del contenido */
 .contenido-principal p {
     font-size: 1rem;
     color: var(--color-text-light);
     line-height: 1.6;
 }
 
-/* Estilos de tarjetas de información (ej. "Save more money" o el gráfico de gastos) */
+/* Tarjetas de información */
 .tarjeta-info {
     background-color: var(--color-card-bg);
     padding: 25px;
@@ -152,13 +167,14 @@ body {
     gap: 15px;
 }
 
+/* Título de las tarjetas */
 .tarjeta-info h3 {
     font-size: 1.4rem;
     color: var(--color-header-title);
     margin-bottom: 10px;
 }
 
-/* Botones dentro de las tarjetas o áreas de contenido */
+/* Botones dentro de las tarjetas */
 .btn-tarjeta {
     background-color: var(--color-button-primary-bg);
     color: var(--color-button-primary-text);
@@ -169,20 +185,21 @@ body {
     font-size: 0.95rem;
     font-weight: 500;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    align-self: flex-start; /* Alinea el botón a la izquierda si es necesario */
+    align-self: flex-start;
 }
 
+/* Efecto hover en los botones */
 .btn-tarjeta:hover {
-    background-color: #2c4da0; /* Un azul un poco más oscuro */
+    background-color: #2c4da0;
     transform: translateY(-1px);
 }
 
-/* Responsividad */
+/* Media queries para pantallas pequeñas (ej. móviles) */
 @media (max-width: 768px) {
     .diseño-dashboard {
         flex-direction: column;
-        margin: 0; /* Elimina el margen en móviles para ocupar todo el ancho */
-        border-radius: 0; /* Elimina el radio para ocupar todo el ancho */
+        margin: 0;
+        border-radius: 0;
     }
 
     .barra-lateral {
@@ -199,25 +216,24 @@ body {
 
     .menu-navegacion ul {
         display: flex;
-        flex-wrap: wrap; /* Permite que los ítems se envuelvan */
+        flex-wrap: wrap;
         justify-content: center;
     }
 
     .menu-navegacion li {
         padding: 10px 20px;
-        margin: 5px; /* Margen uniforme para elementos apilados */
-        border-radius: 10px; /* Bordes redondeados en todas las esquinas para móviles */
+        margin: 5px;
+        border-radius: 10px;
     }
 
-    /* Ajusta el botón de cerrar sesión para móviles */
     .cerrar-sesion {
         margin-right: 0;
         text-align: center;
-        padding: 15px 0; /* Más padding para el botón completo */
+        padding: 15px 0;
         border-radius: 10px;
     }
 
     .contenido-principal {
-        padding: 20px; /* Menos padding en móviles */
+        padding: 20px;
     }
 }

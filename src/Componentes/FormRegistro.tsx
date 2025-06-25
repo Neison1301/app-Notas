@@ -7,6 +7,7 @@ import {
   type ErroresFormularioRegistro,
 } from "../Model/Usuario";
 import { validarRegistro } from "../services/validacion";
+import '../style/login.css'; 
 
 // Interfaz para las props del formulario de registro
 interface PropsFormularioRegistro {
@@ -74,7 +75,6 @@ const FormRegistro: React.FC<PropsFormularioRegistro> = ({
           nombreUsuario: datosFormulario.nombreUsuario,
           email: datosFormulario.email,
           contraseña: datosFormulario.contraseña,
-          token: "token-falso-jwt-registrado-45678",
         });
 
         // Muestra por consola (podrías persistirlo en localStorage aquí)

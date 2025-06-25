@@ -6,38 +6,36 @@ import FormInicioSesion from './Componentes/FormInicioSesion';
 import FormRegistro from './Componentes/FormRegistro';
 import NotesAppLayout from './Pages/NotesAppLayout';
 import { Usuario } from './Model/Usuario';
+import './index.css'; // Asegúrate de importar primero los estilos base
+import './style/dashboard.css'; // Luego los estilos del dashboard (para que sobrescriban si es necesario)
+import './style/login.css'; // Y los estilos de login
 
 function App() {
-  // Estado para almacenar el usuario autenticado
-  // Intenta recuperar el usuario desde localStorage al cargar la aplicación
   const [perfilUsuario, establecerPerfilUsuario] = useState<Usuario | null>(() => {
     try {
       const usuarioGuardado = localStorage.getItem('usuario');
       return usuarioGuardado ? new Usuario(JSON.parse(usuarioGuardado)) : null;
     } catch (error) {
       console.error('Error al cargar usuario desde localStorage:', error);
-      localStorage.removeItem('usuario'); // Si hay error, se limpia
+      localStorage.removeItem('usuario');
       return null;
     }
   });
 
-  const navegar = useNavigate(); // Hook para redirigir programáticamente
+  const navegar = useNavigate();
 
-  // Maneja el inicio de sesión exitoso
   const manejarInicioSesionExitoso = (perfil: Usuario) => {
-    localStorage.setItem('usuario', JSON.stringify(perfil)); // Guardar en localStorage
-    establecerPerfilUsuario(perfil); // Guardar en estado
-    navegar('/dashboard'); // Redirigir al dashboard
+    localStorage.setItem('usuario', JSON.stringify(perfil));
+    establecerPerfilUsuario(perfil);
+    navegar('/dashboard');
   };
 
-  // Maneja el registro exitoso (similar al login)
   const manejarRegistroExitoso = (perfil: Usuario) => {
     localStorage.setItem('usuario', JSON.stringify(perfil));
     establecerPerfilUsuario(perfil);
     navegar('/dashboard');
   };
 
-  // Cierra sesión: limpia todo y redirige al login
   const manejarCierreSesion = () => {
     localStorage.removeItem('usuario');
     establecerPerfilUsuario(null);
@@ -45,60 +43,60 @@ function App() {
   };
 
   return (
-    <div className="cont-app">
-      <Routes>
-        {/* Ruta de login */}
-        <Route
-          path="/login"
-          element={
-            perfilUsuario ? (
-              <Navigate to="/dashboard" replace /> // Si ya está logueado, redirige
-            ) : (
+    <Routes>
+      {/* RUTAS DE AUTENTICACIÓN - Envueltas en el contenedor de centrado */}
+      <Route
+        path="/login"
+        element={
+          perfilUsuario ? (
+            <Navigate to="/dashboard" replace />
+          ) : (
+            <div className="contenedor-centrado-autenticacion"> {/* Nuevo contenedor */}
               <FormInicioSesion
                 alIniciarSesionExitoso={manejarInicioSesionExitoso}
-                alNavegarARegistro={() => navegar('/registro')}
+                alNavegarARegistro={() => navegar('/register')}
               />
-            )
-          }
-        />
-
-        {/* Ruta de registro */}
-        <Route
-          path="/registro"
-          element={
-            perfilUsuario ? (
-              <Navigate to="/dashboard" replace />
-            ) : (
+            </div>
+          )
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          perfilUsuario ? (
+            <Navigate to="/dashboard" replace />
+          ) : (
+            <div className="contenedor-centrado-autenticacion"> {/* Nuevo contenedor */}
               <FormRegistro
                 alRegistroExitoso={manejarRegistroExitoso}
                 alNavegarAInicioSesion={() => navegar('/login')}
               />
-            )
-          }
-        />
+            </div>
+          )
+        }
+      />
 
-        {/* Ruta protegida del dashboard */}
-        <Route
-          path="/dashboard/*"
-          element={
-            perfilUsuario ? (
-              <NotesAppLayout
-                perfilUsuario={perfilUsuario}
-                alCierreSesion={manejarCierreSesion}
-              />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
+      {/* RUTA DEL DASHBOARD - Sin el contenedor de centrado, para que ocupe toda la pantalla */}
+      <Route
+        path="/dashboard"
+        element={
+          perfilUsuario ? (
+            // El componente NotesAppLayout ya tiene la clase "diseño-dashboard"
+            // que se encargará de ocupar el 100% de width/height de su padre.
+            // Asegúrate de que el body y html también tengan height: 100% en index.css
+            <NotesAppLayout
+              perfilUsuario={perfilUsuario}
+              alCierreSesion={manejarCierreSesion}
+            />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
 
-        {/* Redirección automática a login si se entra a raíz */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
-
-        {/* Cualquier otra ruta inexistente redirige a login */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
-    </div>
+      {/* Redirección por defecto */}
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </Routes>
   );
 }
 

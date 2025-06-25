@@ -32,7 +32,6 @@ const NotesAppLayout: React.FC<PropsNotesAppLayout> = ({ perfilUsuario, alCierre
         <h2>¡Bienvenido, {perfilUsuario.nombreUsuario}!</h2>
         <p>Correo: {perfilUsuario.email}</p>
         <p>ID de usuario: {perfilUsuario.id}</p>
-        <p>Token: {perfilUsuario.obtenerTokenParcial()}</p>
         <br /><br /><br />
       </main>
     </div>

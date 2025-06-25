@@ -7,6 +7,7 @@ import {
   type ErroresFormularioInicioSesion,
 } from '../Model/Usuario';
 import { validarInicioSesion } from '../services/validacion';
+import '../style/login.css'; 
 
 // Interfaz para definir las props que recibe este formulario
 interface PropsFormularioInicioSesion {
@@ -73,7 +74,6 @@ const FormInicioSesion: React.FC<PropsFormularioInicioSesion> = ({
           id: 'usuario-123',
           nombreUsuario: datosFormulario.nombreUsuario,
           email: `${datosFormulario.nombreUsuario}@ejemplo.com`,
-          token: 'token-falso-jwt-12345',
         });
 
         // Llama al callback con el usuario simulado
